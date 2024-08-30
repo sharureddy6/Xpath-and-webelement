@@ -1,0 +1,38 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AmazonAddToCart {
+    public static void main(String[] args) {
+        // Set up the ChromeDriver
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        
+        // Navigate to Amazon India
+        driver.get("https://www.amazon.in/");
+        
+        // Locate the search bar using XPath and enter a search query
+        WebElement searchBox = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
+        searchBox.sendKeys("laptop");
+        
+        // Click the search button
+        WebElement searchButton = driver.findElement(By.xpath("//input[@type='submit' and @value='Go']"));
+        searchButton.click();
+        
+        // Click on the first product link in the search results
+        WebElement firstProduct = driver.findElement(By.xpath("//div[@data-index='1']//h2/a"));
+        firstProduct.click();
+        
+        // Click on the "Add to Cart" button
+        WebElement addToCartButton = driver.findElement(By.xpath("//input[@id='add-to-cart-button']"));
+        addToCartButton.click();
+        
+        // Print confirmation of adding to cart
+        WebElement cartConfirmation = driver.findElement(By.xpath("//div[@id='huc-v2-order-row-confirm-text']"));
+        System.out.println("Cart Confirmation: " + cartConfirmation.getText());
+        
+        // Close the browser
+        driver.quit();
+    }
+}

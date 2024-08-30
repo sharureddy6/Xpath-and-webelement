@@ -1,0 +1,29 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AmazonSearch {
+    public static void main(String[] args) {
+        // Set up the ChromeDriver
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        
+        // Navigate to Amazon India
+        driver.get("https://www.amazon.in/");
+        
+        // Locate the search bar using XPath and enter a search query
+        WebElement searchBox = driver.findElement(By.xpath("//input[@id='twotabsearchtextbox']"));
+        searchBox.sendKeys("laptop");
+        
+        // Click the search button
+        WebElement searchButton = driver.findElement(By.xpath("//input[@type='submit' and @value='Go']"));
+        searchButton.click();
+        
+        // Print the page title after search
+        System.out.println("Search Results Page Title: " + driver.getTitle());
+        
+        // Close the browser
+        driver.quit();
+    }
+}
